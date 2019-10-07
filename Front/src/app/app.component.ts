@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CKEditor4 } from 'ckeditor4-angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  public editorData = "Ici, remplissez le contenu de votre fiche de révision.";
   title = 'Front';
+
+  public onChange(event: CKEditor4.EventInfo) {
+    this.editorData = event.editor.getData();
+  }
 }
