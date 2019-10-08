@@ -1,0 +1,16 @@
+<div class="container" style="background-color: bisque; padding:0">
+  <div class="progress-bar" style="background-color:greenyellow;height:20px">
+  </div>
+  <form style="padding:50px;">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Nom de la fiche</label>
+        <input type="text" class="form-control" id="inputSheetName">
+      </div>
+    </div>
+    <div class="sheet-content">
+      <ckeditor style="color:black" (change)="onChange($event)" [data]="editorData"></ckeditor>
+    </div>
+    <button style="margin:30px;" type="submit" class="btn btn-primary">Créer la carte</button>
+  </form>
+</div>
