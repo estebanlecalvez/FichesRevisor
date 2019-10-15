@@ -6,11 +6,9 @@
         <form class="card-content">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputEmail4">Nom de la fiche</label>
-              <input type="text" class="form-control" id="inputSheetName">
+              <input (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
               <form (ngSubmit)="submitPhoto()">
-                <input class="btn btn-outline-primary" type="file" accept="image/*" (change)="updateSource($event)"
-                  (onChange)="getFile($event)">
+                <input type="file" accept="image/*" (change)="updateSource($event)" (onChange)="getFile($event)">
                 <button type="submit">Upload</button>
               </form>
             </div>
@@ -28,12 +26,16 @@
       <div class="card-container">
         <form class="card-content">
           <div class="sheet-content">
+            <h2>{{sheetTitle}}</h2>
             <div>
               <img class="preview-image" *ngIf="source" [src]="source" src="">
             </div>
             <div id="cardContent"></div>
           </div>
         </form>
+      </div>
+      <div class="card-footer">
+        <p> <b>Date de création: </b>{{actualDate}}</p>
       </div>
     </div>
 

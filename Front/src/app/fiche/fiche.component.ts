@@ -10,8 +10,11 @@ import * as $ from 'jquery';
 export class FicheComponent implements OnInit {
   public sheetContent = "Ici, remplissez le contenu de votre fiche de révision.";
   title = 'Front';
+  sheetTitle = "Python";
   public image = "";
   source = "";
+  actualDate = new Date().toLocaleDateString();
+
   constructor() { }
 
   ngOnInit() {
@@ -38,10 +41,14 @@ export class FicheComponent implements OnInit {
     // This will process our file and get it's attributes/data
     reader.readAsDataURL(file);
   }
+
+  onKeyTitle(event) {
+    this.sheetTitle = event.target.value;
+  }
+
   public onChangeEditor(event: CKEditor4.EventInfo) {
     this.sheetContent = event.editor.getData();
     $("#cardContent").html(this.sheetContent);
-    $("#preview-image").html('<img class="img-preview" *ngIf="source" [src]="source" src="">')
   }
 
 
