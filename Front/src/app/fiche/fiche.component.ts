@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CKEditor4 } from 'ckeditor4-angular';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'fiche',
@@ -7,16 +8,42 @@ import { CKEditor4 } from 'ckeditor4-angular';
   styleUrls: ['./fiche.component.sass']
 })
 export class FicheComponent implements OnInit {
-  public editorData = "Ici, remplissez le contenu de votre fiche de révision.";
+  public sheetContent = "Ici, remplissez le contenu de votre fiche de révision.";
   title = 'Front';
-
-  public onChange(event: CKEditor4.EventInfo) {
-    this.editorData = unescape(encodeURIComponent(event.editor.getData()));
-  }
+  public image = "";
+  source = "";
   constructor() { }
 
   ngOnInit() {
   }
+
+  // Emit an event when a file has been picked. Here we return the file itself
+  @Output() onChangePhoto: EventEmitter<File> = new EventEmitter<File>();
+
+  // If the input has changed(file picked) we project the file into the img previewer
+  updateSource($event: Event) {
+    // We access he file with $event.target['files'][0]
+    this.projectImage($event.target['files'][0]);
+  }
+
+  // Uses FileReader to read the file from the input
+  projectImage(file: File) {
+    let reader = new FileReader;
+    // TODO: Define type of 'e'
+    reader.onload = (e: any) => {
+      // Simply set e.target.result as our <img> src in the layout
+      this.source = e.target.result;
+      this.onChangePhoto.emit(file);
+    };
+    // This will process our file and get it's attributes/data
+    reader.readAsDataURL(file);
+  }
+  public onChangeEditor(event: CKEditor4.EventInfo) {
+    this.sheetContent = event.editor.getData();
+    $("#cardContent").html(this.sheetContent);
+    $("#preview-image").html('<img class="img-preview" *ngIf="source" [src]="source" src="">')
+  }
+
 
 
 }
