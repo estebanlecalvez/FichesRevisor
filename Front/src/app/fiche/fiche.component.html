@@ -6,18 +6,18 @@
           <h1>Créer votre carte</h1>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="sheet-title-input" aria-describedby="sheetTitleInput"
-              placeholder="Entrez un titre" (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
-            <small id="sheetTitleInput" class="form-text text-muted">Ce champ est obligatoire</small>
+            <input type="text" class="form-control" id="sheet-title-input" placeholder="Entrez un titre"
+              (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
+          </div>
+
+
+          <div class="sheet-content">
+            <ckeditor (change)="onChangeEditor($event)" [data]="editorData"></ckeditor>
           </div>
           <form (ngSubmit)="submitPhoto()">
             <input type="file" accept="image/*" (change)="updateSource($event)" (onChange)="getFile($event)">
             <button type="submit">Upload</button>
           </form>
-
-          <div class="sheet-content">
-            <ckeditor (change)="onChangeEditor($event)" [data]="editorData"></ckeditor>
-          </div>
           <button type="submit" class="btn btn-primary card-submit">Créer la carte</button>
         </form>
       </div>
@@ -25,21 +25,22 @@
 
     <div class="col">
       <h1>Apercu</h1>
-      <div class="card-container-apercu">
+      <div class="card-container-apercu card-container-apercu-background">
         <form class="card-content">
           <div class="sheet-content">
             <div class="row">
               <img class="preview-image padding-right" *ngIf="source" [src]="source" src="">
               <h2>{{sheetTitle}}</h2>
+              <br />
             </div>
-
-            <div id="cardContent"></div>
+            <div id="cardContent" class=""></div>
+          </div>
+          <div class="footer">
+            <p> <b>Date de création: </b>{{actualDate}}</p>
           </div>
         </form>
       </div>
-      <div class="card-footer">
-        <p> <b>Date de création: </b>{{actualDate}}</p>
-      </div>
+
     </div>
 
   </div>
