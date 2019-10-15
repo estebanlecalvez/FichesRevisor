@@ -1,18 +1,20 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <h1>Créer votre carte</h1>
       <div class="card-container">
         <form class="card-content">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
-              <form (ngSubmit)="submitPhoto()">
-                <input type="file" accept="image/*" (change)="updateSource($event)" (onChange)="getFile($event)">
-                <button type="submit">Upload</button>
-              </form>
-            </div>
+          <h1>Créer votre carte</h1>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="sheet-title-input" aria-describedby="sheetTitleInput"
+              placeholder="Entrez un titre" (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
+            <small id="sheetTitleInput" class="form-text text-muted">Ce champ est obligatoire</small>
           </div>
+          <form (ngSubmit)="submitPhoto()">
+            <input type="file" accept="image/*" (change)="updateSource($event)" (onChange)="getFile($event)">
+            <button type="submit">Upload</button>
+          </form>
+
           <div class="sheet-content">
             <ckeditor (change)="onChangeEditor($event)" [data]="editorData"></ckeditor>
           </div>
@@ -23,13 +25,14 @@
 
     <div class="col">
       <h1>Apercu</h1>
-      <div class="card-container">
+      <div class="card-container-apercu">
         <form class="card-content">
           <div class="sheet-content">
-            <h2>{{sheetTitle}}</h2>
-            <div>
-              <img class="preview-image" *ngIf="source" [src]="source" src="">
+            <div class="row">
+              <img class="preview-image padding-right" *ngIf="source" [src]="source" src="">
+              <h2>{{sheetTitle}}</h2>
             </div>
+
             <div id="cardContent"></div>
           </div>
         </form>
