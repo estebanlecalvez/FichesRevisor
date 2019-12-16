@@ -14,5 +14,5 @@ class Sheet(models.Model):
     categorie = models.CharField(max_length=30)
     date_crea = models.DateField(max_length=10)
     date_last_maj = models.DateField(max_length=10)
-    contenu = models.CharField(max_length=255)
-    auteur = models.ForeignKey(Auteur, on_delete=models.CASCADE)
+    contenu = models.TextField()
+    auteur = models.CharField(max_length=255)
