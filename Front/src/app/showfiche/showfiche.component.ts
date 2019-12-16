@@ -22,13 +22,12 @@ export class ShowficheComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   setPercentage(event) {
-    var currY = $('html').scrollTop();
-    var scrollHeight = $('html').height();
-    var scrollPercent = (currY / (scrollHeight)) * 100;
-    console.log("currY",currY);
-    console.log("scrollPercent:",scrollPercent);
-    console.log("scrollHeight:",scrollHeight);
-    $('.bar-long').css('width', scrollPercent + "%");
+    var h = document.documentElement,
+      b = document.body,
+      st = 'scrollTop',
+      sh = 'scrollHeight';
+    var result = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+    $('.bar-long').css('width', result + "%");
 
   }
 

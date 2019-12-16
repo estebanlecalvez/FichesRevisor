@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'add_fiche', component: FicheComponent },
   { path: 'fiches', component: ListFichesComponent },
   { path: 'fiche/:id', component: ShowficheComponent },
+  { path: '**', component: ListFichesComponent },
 ];
 
 @NgModule({
