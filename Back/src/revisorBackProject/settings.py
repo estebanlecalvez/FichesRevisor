@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fiche',
-    'corsheaders',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'revisorBackProject.urls'
+ROOT_URLCONF = 'fiche.urls'
 
 TEMPLATES = [
     {
@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:4200"
 ]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
