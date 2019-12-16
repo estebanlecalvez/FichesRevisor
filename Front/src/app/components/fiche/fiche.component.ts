@@ -15,7 +15,7 @@ export class FicheComponent implements OnInit {
   source = "";
   actualDate = new Date().toLocaleDateString();
 
-  constructor() { }
+  constructor() {   }
 
   ngOnInit() {
   }
@@ -27,6 +27,11 @@ export class FicheComponent implements OnInit {
   updateSource($event: Event) {
     // We access he file with $event.target['files'][0]
     this.projectImage($event.target['files'][0]);
+  }
+
+
+  addToBase(){
+    var ficheToSend = {}
   }
 
   // Uses FileReader to read the file from the input
