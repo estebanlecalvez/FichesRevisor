@@ -1,24 +1,6 @@
+
 <div class="container-fluid">
- <mdb-navbar SideClass="navbar navbar-1 navbar-light amber lighten-2" [containerInside]="false">
 
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
-
-    <links>
-
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
-        </li>
-      </ul>
-   </links>
-
-  </mdb-navbar> 
   <div class="row">
     <div class="col">
       <div class="card-container">
@@ -29,8 +11,6 @@
             <input type="text" class="form-control" id="sheet-title-input" placeholder="Entrez un titre"
               (keyup)="onKeyTitle($event)" value={{sheetTitle}}>
           </div>
-
-
           <div class="sheet-content">
             <ckeditor (change)="onChangeEditor($event)" [data]="editorData"></ckeditor>
           </div>
@@ -45,7 +25,6 @@
 
     <div class="col">
       <br />
-
       <h1>Apercu</h1>
       <br />
       <br />

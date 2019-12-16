@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { FicheComponent } from './components/fiche/fiche.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ListFichesComponent } from './list-fiches/list-fiches.component';
+import { ShowficheComponent } from './showfiche/showfiche.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FicheComponent,
+    ListFichesComponent,
+    ShowficheComponent,
   ],
   imports: [
     BrowserModule,
