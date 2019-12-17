@@ -1,24 +1,21 @@
 <div class="container-fluid">
     <br />
+    <!-- {{fiches}} -->
     <div class="row">
-        <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let fiche of fiches">
+        <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let fiche of fiches | async">
             <div class="card">
                 <div class="view">
-                    <img src={{fiche.image}} class="card-img-top" alt="photo">
+                    <img src={{fiche.fields.image}} class="card-img-top" alt="photo">
                     <a href="#">
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{fiche.title}}</h4>
-                    <p class="card-text">{{fiche.text}}</p>
-                    <a href="/fiche/{{fiche.id}}" class="btn btn-primary">Consulter</a>
+                    <h4 class="card-title">{{fiche.fields.titre}}</h4>
+                    <p class="card-text">{{fiche.fields.text}}</p>
+                    <a href="/fiche/{{fiche.pk}}" class="btn btn-primary">Consulter</a>
                 </div>
             </div>
         </div>
-        <script>
-            var p = $("p").first();
-            $("p").last().text("scrollTop:" + p.scrollTop());
-        </script>
     </div>
 </div>
