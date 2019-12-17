@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Sheet } from './sheet';
 
 @Injectable({
@@ -20,6 +21,13 @@ export class FicheService {
 
   getFiche(id: number): Observable<Sheet> {
     return this.http.get<Sheet>(`http://localhost:8000/api/sheet/${id}`);
+  }
+
+  addFiche(sheet: Sheet) {
+    this.http.post<Sheet>("http://localhost:8000/api/add_sheet", sheet)
+      .subscribe(res=>{
+        console.log(res);
+      });
   }
 
 }

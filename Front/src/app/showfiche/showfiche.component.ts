@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import * as $ from "jquery";
 import { FicheService } from '../fiche.service';
 import { Observable } from 'rxjs';
-import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { Sheet } from '../sheet';
 import { ActivatedRoute } from '@angular/router';
 
@@ -27,7 +26,6 @@ export class ShowficheComponent implements OnInit {
     this.fiche= this.sheetService.getFiche(this.id);
     // this.fiche = ocjectOfFiche[0];
     this.fiche.subscribe((res) => this.fiche = res[0]);
-
   }
 
   @HostListener('window:scroll', ['$event']) // for window scroll events

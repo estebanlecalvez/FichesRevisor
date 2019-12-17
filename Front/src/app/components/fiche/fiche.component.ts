@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CKEditor4 } from 'ckeditor4-angular';
 import * as $ from 'jquery';
+import { FicheService } from 'src/app/fiche.service';
 
 @Component({
   selector: 'fiche',
@@ -9,13 +10,14 @@ import * as $ from 'jquery';
 })
 export class FicheComponent implements OnInit {
   public sheetContent = "Ici, remplissez le contenu de votre fiche de révision.";
-  title = 'Front';
   sheetTitle = "Python";
   public image = "";
   source = "";
   actualDate = new Date().toLocaleDateString();
+  sheetAuteur = "";
+  sheetCategorie = "";
 
-  constructor() {   }
+  constructor(private sheetService: FicheService) { }
 
   ngOnInit() {
   }
@@ -27,11 +29,6 @@ export class FicheComponent implements OnInit {
   updateSource($event: Event) {
     // We access he file with $event.target['files'][0]
     this.projectImage($event.target['files'][0]);
-  }
-
-
-  addToBase(){
-    var ficheToSend = {}
   }
 
   // Uses FileReader to read the file from the input
@@ -51,9 +48,31 @@ export class FicheComponent implements OnInit {
     this.sheetTitle = event.target.value;
   }
 
+  onKeyAuteur(event) {
+    this.sheetAuteur = event.target.value;
+  }
+
+  onKeyCategorie(event) {
+    this.sheetCategorie = event.target.value;
+  }
+
   public onChangeEditor(event: CKEditor4.EventInfo) {
     this.sheetContent = event.editor.getData();
     $("#cardContent").html(this.sheetContent);
+  }
+
+  addFiche(event) {
+    event.preventDefault();
+    console.log("add sheet front");
+    this.sheetService.addFiche({
+      "titre": this.sheetTitle || "",
+      "image": this.image || "",
+      "categorie": this.sheetCategorie || "Pas de catégorie",
+      "date_crea": new Date().toLocaleDateString(),
+      "date_last_maj": new Date().toLocaleDateString(),
+      "contenu": this.sheetContent || "<p></p>",
+      "auteur": this.sheetAuteur || "Anonyme"
+    });
   }
 
 
