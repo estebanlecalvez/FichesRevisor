@@ -1,5 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import * as $ from "jquery";
+import { FicheService } from '../fiche.service';
+import { Observable } from 'rxjs';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { Sheet } from '../sheet';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-showfiche',
@@ -11,12 +16,17 @@ export class ShowficheComponent implements OnInit {
   public scrollVerticalPosition;
   public windowHeight;
   public percentage;
-
-  constructor() {
+  fiche: Observable<Sheet>;
+  private id;
+  constructor(private sheetService: FicheService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.fiche= this.sheetService.getFiche(this.id);
+    // this.fiche = ocjectOfFiche[0];
+    this.fiche.subscribe((res) => this.fiche = res[0]);
 
   }
 
