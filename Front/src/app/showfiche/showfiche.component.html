@@ -18,9 +18,8 @@
                         </h2>
                         <br />
                     </div>
-                    <div id="cardContent" class="">
-                        {{fiche.fields.contenu}}
-                    </div>
+                    <div [innerHTML]="fiche.fields.contenu"></div>
+
                 </div>
                 <div class="footer">
                     <p> <b>Date de création: </b>{{fiche.fields.date_crea}}</p>
