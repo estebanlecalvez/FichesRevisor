@@ -50,10 +50,11 @@ def save_sheet(request):
     date_last_maj = jsonParsed["date_last_maj"]
     contenu = jsonParsed["contenu"]
     auteur = jsonParsed["auteur"]
+    print(titre)
     sheet = Sheet(titre=titre,image=image,categorie=categorie,date_crea=date_crea,date_last_maj=date_last_maj,contenu=contenu,
                   auteur=auteur)
     sheet.save()
-    return HttpResponse("OK")
+    return HttpResponse(sheet)
 
 
 def get_sheet(param,id):

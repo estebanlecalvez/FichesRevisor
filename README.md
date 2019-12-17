@@ -17,8 +17,6 @@
  `python manage.py runserver`
 
 # CORS
-
-`pip install django-cors-headers`
  
 `pipenv install django-cors-headers`
 
@@ -26,6 +24,6 @@
 
 `python manage.py makemigrations`
 
-` python manage.py migrate`
+`python manage.py migrate`
 
 
