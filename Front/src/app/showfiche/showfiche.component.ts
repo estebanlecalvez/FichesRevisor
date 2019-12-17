@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './showfiche.component.html',
   styleUrls: ['./showfiche.component.sass']
 })
-export class ShowficheComponent implements OnInit {
 
+export class ShowficheComponent implements OnInit {
   public scrollVerticalPosition;
   public windowHeight;
   public percentage;
@@ -36,9 +36,17 @@ export class ShowficheComponent implements OnInit {
       sh = 'scrollHeight';
     var result = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
     $('.bar-long').css('width', result + "%");
-
   }
 
+  deleteFiche(event){
+    event.preventDefault();
+    console.log("delete fiche");
+    this.sheetService.deleteFiche(this.id);
+    window.location.href = "/fiches";
+  }
 
-
+  back(event){
+    event.preventDefault();
+    window.location.href = "/fiches";
+  }
 }

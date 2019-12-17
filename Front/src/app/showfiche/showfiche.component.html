@@ -2,20 +2,24 @@
 
 <div (scroll)="setPercentage($event)">
     <div class="row">
-        <div class="col-2 anchor-titles">
+        <!-- Comment mettre en place les ancrages en fonction du <h1> dans le html... :/ -->
+        <!-- <div class="col-2 anchor-titles">
             <ul>
                 <li>Ceci est un titre 1</li>
                 <li>Ceci est un titre 2</li>
             </ul>
-        </div>
+        </div> -->
         <div class="col-9 container-fluid card-container-apercu card-container-apercu-background">
             <form class="card-content">
+                <button (click)="back($event)" class="btn btn-success card-submit">Retour</button>
                 <div class="sheet-content">
                     <div class="row">
+
                         <img class="preview-image padding-right" *ngIf="source" [src]="source" src="">
-                       
-                        <h2 class="title-card">  {{fiche.fields.titre}}
+                        <h2 class="col-2 title-card"> {{fiche.fields.titre}}
                         </h2>
+                        <div class="col-8"></div>
+                        <p class="col-2 auteur-card">Auteur: {{fiche.fields.auteur}}</p>
                         <br />
                     </div>
                     <div [innerHTML]="fiche.fields.contenu"></div>
@@ -23,6 +27,7 @@
                 </div>
                 <div class="footer">
                     <p> <b>Date de création: </b>{{fiche.fields.date_crea}}</p>
+                    <button (click)="deleteFiche($event)" class="btn btn-danger card-submit">Supprimer la carte</button>
                 </div>
             </form>
         </div>

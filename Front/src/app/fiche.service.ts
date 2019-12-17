@@ -30,4 +30,10 @@ export class FicheService {
       });
   }
 
+  deleteFiche(id: number) {
+    this.http.delete<Sheet>(`http://localhost:8000/api/delete_sheet/${id}`).subscribe(res=>{
+      console.log(res);
+    });
+  }
+
 }

@@ -60,3 +60,9 @@ def save_sheet(request):
 def get_sheet(param,id):
     return HttpResponse(serialize('json',Sheet.objects.filter(pk=id)))
 
+    
+@csrf_exempt
+def delete_sheet(param,id):
+    sheet = Sheet.objects.filter(pk=id)
+    sheet.delete()
+    return HttpResponse("Suppression OK")

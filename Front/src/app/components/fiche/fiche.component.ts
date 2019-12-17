@@ -11,7 +11,7 @@ import { FicheService } from 'src/app/fiche.service';
 export class FicheComponent implements OnInit {
   public sheetContent = "Ici, remplissez le contenu de votre fiche de révision.";
   sheetTitle = "Python";
-  public image = "";
+  image;
   source = "";
   actualDate = new Date().toLocaleDateString();
   sheetAuteur = "";
@@ -41,7 +41,8 @@ export class FicheComponent implements OnInit {
       this.onChangePhoto.emit(file);
     };
     // This will process our file and get it's attributes/data
-    reader.readAsDataURL(file);
+    this.image = reader.readAsDataURL(file);
+    console.log(this.image);
   }
 
   onKeyTitle(event) {
@@ -66,7 +67,7 @@ export class FicheComponent implements OnInit {
     console.log("add sheet front");
     this.sheetService.addFiche({
       "titre": this.sheetTitle || "",
-      "image": this.image || "",
+      "image": this.source || "",
       "categorie": this.sheetCategorie || "Pas de catégorie",
       "date_crea": new Date().toLocaleDateString(),
       "date_last_maj": new Date().toLocaleDateString(),
